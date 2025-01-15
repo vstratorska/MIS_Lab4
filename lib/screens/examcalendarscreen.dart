@@ -145,8 +145,8 @@ class _ExamCalendarScreenState extends State<ExamCalendarScreen> {
             },
             eventLoader: _getEventsForDay,
             headerStyle: HeaderStyle(
-              formatButtonVisible: false, // Hides the "two weeks" button
-              titleCentered: true, // Centers the title
+              formatButtonVisible: false,
+              titleCentered: true,
               titleTextStyle: TextStyle(
                 fontSize: 18.0,
                 fontWeight: FontWeight.bold,
@@ -154,21 +154,21 @@ class _ExamCalendarScreenState extends State<ExamCalendarScreen> {
             ),
             calendarStyle: CalendarStyle(
               selectedDecoration: BoxDecoration(
-                color: Colors.pink, // Changes the selected day color to pink
+                color: Colors.pink,
                 shape: BoxShape.circle,
               ),
               todayDecoration: BoxDecoration(
                 color: Colors.pink[
-                200], // Highlights today's date with a similar color
+                200],
                 shape: BoxShape.circle,
               ),
               selectedTextStyle:
-              TextStyle(color: Colors.white), // Selected day text color
+              TextStyle(color: Colors.white),
             ),
           ),
           const SizedBox(height: 8.0),
           Expanded(
-            flex: 2, // Adjust the height of the list relative to the map
+            flex: 2,
             child: ListView(
               children: _getEventsForDay(_selectedDay ?? _focusedDay)
                   .map((event) => ListTile(

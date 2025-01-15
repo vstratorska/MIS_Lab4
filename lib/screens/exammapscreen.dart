@@ -28,13 +28,11 @@ class _ExamMapScreenState extends State<ExamMapScreen> {
     bool serviceEnabled;
     LocationPermission permission;
 
-    // Check if location services are enabled
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
       return Future.error('Location services are disabled.');
     }
 
-    // Check for location permissions
     permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
@@ -48,14 +46,12 @@ class _ExamMapScreenState extends State<ExamMapScreen> {
           'Location permissions are permanently denied, we cannot request permissions.');
     }
 
-    // Get the current location
     return await Geolocator.getCurrentPosition();
   }
 
 
   Future<void> _initializeMap() async {
     try {
-      // Determine user's current location
       Position position = await _determinePosition();
       _currentPosition = LatLng(position.latitude, position.longitude);
 
@@ -67,7 +63,6 @@ class _ExamMapScreenState extends State<ExamMapScreen> {
         ),
       };
 
-      // Add exam markers and routes
       for (var entry in widget.examSchedule.entries) {
         for (var exam in entry.value) {
           if (exam.containsKey('latitude') && exam.containsKey('longitude')) {
